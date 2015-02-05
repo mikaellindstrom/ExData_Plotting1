@@ -6,8 +6,8 @@
 ## 1-2 February, 2007.
 
 
-## 1. Read in file
-dataset<-read.csv("household_power_consumption.txt", 
+## 1. Read in file from the parent directory 
+dataset<-read.csv("../household_power_consumption.txt", 
                   sep=";", 
                   header=TRUE, 
                   na.strings=c("?"))
@@ -69,7 +69,6 @@ plot(subdataset$timestamp,
      type="l",
      xlab="datetime",
      ylab="Global_reactive_power")
-
 
 ## 6. Close file to write out plot to file
 dev.off()
