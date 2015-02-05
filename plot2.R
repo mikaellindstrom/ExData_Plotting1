@@ -7,21 +7,20 @@
 
 
 ## 1. Read in file
-dataset<-read.csv("household_power_consumption.txt", sep=";", header=TRUE, na.strings=c("?"))
+dataset<-read.csv("household_power_consumption.txt",
+                  sep=";",
+                  header=TRUE,
+                  na.strings=c("?"))
 
 ## 2. Create subset of just 1-2 February, 2007
-subdataset<-subset(dataset, Date == "1/2/2007" | Date == "2/2/2007")
+subdataset<-subset(dataset, 
+                   Date == "1/2/2007" | Date == "2/2/2007")
 
 ## 3. Add timestamp column that is combination of Date and Time columns
 ##    and convert it to POSIXct format
-subdataset$timestamp<-as.POSIXct(strptime(paste(subdataset$Date,
-                                                subdataset$Time),
-                                          "%d/%m/%Y %H:%M:%S"))
-
 subdataset$timestamp<-strptime(paste(subdataset$Date,
-                                                subdataset$Time),
-                                          "%d/%m/%Y %H:%M:%S")
-
+                                     subdataset$Time),
+                               "%d/%m/%Y %H:%M:%S")
 
 ## 4. Open PNG device to create plot2.png
 png("plot2.png", width=480, height=480)
